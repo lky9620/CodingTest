@@ -8,8 +8,6 @@ for i in range(1,N+1):
     if N % i == 0:
         ls.append(i)
 
-print(ls, len(ls))
-
 if len(ls) < K:
     print(0)
 else:    
