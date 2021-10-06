@@ -2,19 +2,25 @@ N = int(input())
 Pi = list(map(int, input().split()))
 
 max_Pi = 0
-init_up = -1
+ls_up = []
 
-for i in range(N+1):
+for i in range(N):
+    # print(Pi[i])
     if i == 0:
-        init_up = Pi[i]
+        ls_up.append(Pi[i])
     else:
         if Pi[i] > Pi[i-1]:
-            if init_up == -1:
-                init_up = Pi[i-1]
-            else:
-                if Pi[i]-init_up >= max_Pi:
-                    max_Pi = Pi[i]-init_up
+            if len(ls_up) == 0:
+                ls_up.append(Pi[i-1])
+            ls_up.append(Pi[i])
+            
+            if i == N-1:
+                if ls_up[-1]-ls_up[0] > max_Pi:
+                    max_Pi = ls_up[-1]-ls_up[0]
         else:
-            init_up = -1
+            if len(ls_up) > 1:
+                if ls_up[-1]-ls_up[0] > max_Pi:
+                    max_Pi = ls_up[-1]-ls_up[0]
+            ls_up =[]
 
 print(max_Pi)
